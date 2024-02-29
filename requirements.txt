@@ -4,3 +4,5 @@ SQLAlchemy==1.4.22
 Werkzeug==2.0.1
 Flask-SQLAlchemy==2.5.1
 gunicorn
+pytest==7.1.1
+Flask-Testing==0.8.1
