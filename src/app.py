@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from car import db, Car
+from .car import db, Car
 import requests
 
 app = Flask(__name__)
