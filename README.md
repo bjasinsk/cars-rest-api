@@ -2,7 +2,7 @@
 
 Repository intended for the project which is a simple REST API - a basic database of car makes and models working with an external API.
 
-Project requires python version 3.10
+Project requires python version 3.10. Project runs locally on port 8000.
 
 # 1. Launching the project
 
@@ -34,7 +34,17 @@ $pytest
 
 # 3. How to test individually
 
+Add a new car:  
+$curl -X POST -H "Content-Type: application/json" -d '{"make": "Toyota", "model": "Corolla"}' http://127.0.0.1:8000/cars
 
+Rate a car:  
+$curl -X POST -H "Content-Type: application/json" -d '{"make": "Toyota", "model": "Corolla", "rating": 5}' http://127.0.0.1:8000/rate
+
+Get all cars:  
+$curl -X GET http://127.0.0.1:8000/cars
+
+Get popular cars:  
+$curl -X GET http://127.0.0.1:8000/popular
 
 # 4. Models
 The car class represents an auto in the database, it has fields in it such as:
