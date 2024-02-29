@@ -87,9 +87,54 @@ def test_get_popular_cars():
     for rate in rate_data:
         requests.post(url_rate_car, json=rate, headers={'Content-Type': 'application/json'})
 
-    url = 'http://127.0.0.1:8000/popular'
-    response = requests.get(url)
+    response = requests.get('http://127.0.0.1:8000/popular')
     assert response.status_code == 200
     results = response.json()
     assert results[0]['model'] == 'Accord'
     assert results[1]['model'] == 'Civic'
+
+
+def test_sort_by_make_when_same_votes():
+    """Test that cars are sorted alphabetically by make when they have the same number of votes."""
+
+    # cleaning the database before test
+    with app.app_context():
+        Car.query.delete()
+        db.session.commit()
+
+    cars_to_add = [
+        {'make': 'Audi', 'model': 'A4', 'rating': 4},
+        {'make': 'BMW', 'model': '320', 'rating': 4}
+    ]
+
+    for car in cars_to_add:
+        requests.post('http://127.0.0.1:8000/cars', json={'make': car['make'], 'model': car['model']}, headers={'Content-Type': 'application/json'})
+        requests.post('http://127.0.0.1:8000/rate', json={'make': car['make'], 'model': car['model'], 'rating': car['rating']}, headers={'Content-Type': 'application/json'})
+
+    response = requests.get('http://127.0.0.1:8000/popular')
+    assert response.status_code == 200
+    response_data = response.json()
+    assert len(response_data) > 0
+    assert response_data[0]['make'] == 'Audi'
+
+def test_sort_by_model_when_same_make_and_votes():
+    """Test that cars are sorted alphabetically by model when they have the same make and number of votes."""
+
+    # cleaning the database before test
+    with app.app_context():
+        Car.query.delete()
+        db.session.commit()
+
+    cars_to_add = [
+        {'make': 'Honda', 'model': 'Accord', 'rating': 5},
+        {'make': 'Honda', 'model': 'Civic', 'rating': 5}
+    ]
+
+    for car in cars_to_add:
+        requests.post('http://127.0.0.1:8000/cars', json={'make': car['make'], 'model': car['model']}, headers={'Content-Type': 'application/json'})
+        requests.post('http://127.0.0.1:8000/rate', json={'make': car['make'], 'model': car['model'], 'rating': car['rating']}, headers={'Content-Type': 'application/json'})
+
+    response = requests.get('http://127.0.0.1:8000/popular')
+    sorted_cars = response.json()
+    assert sorted_cars[0]['model'] == 'Accord' and sorted_cars[1]['model'] == 'Civic'
+
