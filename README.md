@@ -1,27 +1,64 @@
 # cars-rest-api
 
-# Repository intended for the project which is a simple REST API - a basic database of car makes and models working with an external API.
+Repository intended for the project which is a simple REST API - a basic database of car makes and models working with an external API.
+
+Project requires python version 3.10
 
 # 1. Launching the project
 
-# Creation of an environment
+**Creation of an environment:**
 
-python -m venv venv
+$python -m venv venv
 
-# Running the environment on a Unix-type system
+**Running the environment on a Unix-type system:**
 
-source venv/bin/activate
+$source venv/bin/activate
 
-# Running the environment on Windows
+**Running the environment on Windows:**
 
-venv\Scripts\activate
+$venv\Scripts\activate
 
-# Installing the required libraries
+**Installing the required libraries:**
 
-pip install -r requirements.txt
+$pip install -r requirements.txt
 
-python3.10
+**To start the project using gunicorn:**
 
-# To start the project using gunicorn:
+$gunicorn app:app
 
-gunicorn app:app
+# 2. Run tests
+
+To run the tests, go to the src subfolder in the terminal and then run the command:  
+
+$pytest
+
+# 3. How to test individually
+
+
+
+# 4. Models
+The car class represents an auto in the database, it has fields in it such as:
+-id - an identifier to pass in the database 
+- make - the brand name of the car
+- model - the name of the car model
+- avarage_rate - the average rating the car has received at a given time
+- vote_count - the number of votes with a rating on this car 
+
+# 5. Endpoints
+**POST /cars**  
+Description: Add a new car to the database.
+Request body: JSON object with make and model.   
+Response: JSON object indicating success or failure.
+
+**POST /rate**  
+Description: Submit a rating for a car.
+Request body: JSON object with make, model, and rating.  
+Response: JSON object indicating success or failure.
+
+**GET /cars**  
+Description: Retrieve a list of all cars.  
+Response: JSON array of cars with details.  
+
+**GET /popular**  
+Description: Retrieve a list of cars sorted by popularity (number of votes) and alphabetically by make and model if necessary.  
+Response: JSON array of popular cars with details.

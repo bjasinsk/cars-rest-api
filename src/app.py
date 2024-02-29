@@ -10,6 +10,7 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
+
 @app.route('/cars', methods=['POST'])
 def add_car():
     data = request.json
@@ -29,6 +30,7 @@ def add_car():
     db.session.add(new_car)
     db.session.commit()
     return jsonify({'SUCCESS': 'Car was added to the database'}), 201
+
 
 @app.route('/rate', methods=['POST'])
 def rate_car():
@@ -64,6 +66,7 @@ def rate_car():
     else:
         return jsonify({'ERROR': 'Car does not exist'}), 404
 
+
 @app.route('/cars', methods=['GET'])
 def get_cars():
     cars = Car.query.all()
@@ -78,9 +81,10 @@ def get_cars():
         })
     return jsonify(cars_list), 200
 
+
 @app.route('/popular', methods=['GET'])
 def get_popular_cars():
-    cars = Car.query.order_by(Car.vote_count.desc()).all()
+    cars = Car.query.order_by(Car.vote_count.desc(), Car.make.asc(), Car.model.asc()).all()
     popular_cars_list = []
     for car in cars:
         popular_cars_list.append({
