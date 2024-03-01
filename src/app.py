@@ -1,6 +1,11 @@
 from flask import Flask, request, jsonify
-from .car import db, Car
 import requests
+import os
+
+if os.getenv('TESTING'):
+    from .car import Car, db
+else:
+    from car import Car, db
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cars.db'
