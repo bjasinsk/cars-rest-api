@@ -22,13 +22,13 @@ $venv\Scripts\activate
 
 $pip install -r requirements.txt
 
-**To start the project using gunicorn:**
+**To start the project using gunicorn run command in main folder**
 
-$gunicorn app:app
+$gunicorn --chdir src app:app
 
 # 2. Run tests locally
 
-To run the tests, go to the src subfolder in the terminal and then run the command:  
+To run the tests, go to the tests subfolder in the terminal and then run the command:  
 
 $pytest
 
