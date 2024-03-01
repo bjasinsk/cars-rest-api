@@ -26,25 +26,48 @@ $pip install -r requirements.txt
 
 $gunicorn app:app
 
-# 2. Run tests
+# 2. Run tests locally
 
 To run the tests, go to the src subfolder in the terminal and then run the command:  
 
 $pytest
 
-# 3. How to test individually
+# The reason why there are two branches
+The use of relative imports (such as from .car import db, Car) is recommended in cases where you are running the application in an environment that supports such a directory structure, Heroku being such an environment. However, when you run the application locally on your computer Python may not be able to resolve relative paths correctly, resulting in import errors. 
+For this reason, I put the version of the project with relative paths on the main branch from which the version on Heroku is hosted.
+On the other hand, I put the version with direct imports on the test-locally branch, so that I can run tests on it and test the application locally.
 
-Add a new car:  
+# 3. How to test rest api operations locally
+
+Below are only examples of endpoints, adding and rating automobiles works for any car, just replace the data in the command:  
+
+**Add a new car:**    
 $curl -X POST -H "Content-Type: application/json" -d '{"make": "Toyota", "model": "Corolla"}' http://127.0.0.1:8000/cars
 
-Rate a car:  
+**Rate a car:**   
 $curl -X POST -H "Content-Type: application/json" -d '{"make": "Toyota", "model": "Corolla", "rating": 5}' http://127.0.0.1:8000/rate
 
-Get all cars:  
+**Get all cars:**   
 $curl -X GET http://127.0.0.1:8000/cars
 
-Get popular cars:  
+**Get popular cars:**  
 $curl -X GET http://127.0.0.1:8000/popular
+
+# 4. How to test rest api operations on Heroku
+Below are only examples of endpoints, adding and rating automobiles works for any car, just replace the data in the command:  
+
+**Add a new car:**  
+curl -X POST -H "Content-Type: application/json" -d "{\"make\":\"Toyota\", \"model\":\"Yaris\"}" https://shrouded-citadel-19343-1561f1cd2280.herokuapp.com/cars
+
+**Rate a car:**  
+curl -X POST -H "Content-Type: application/json" -d "{\"make\":\"Toyota\", \"model\":\"Corolla\", \"rating\":5}" https://shrouded-citadel-19343-1561f1cd2280.herokuapp.com/rate
+
+**Get all cars:**  
+$curl https://shrouded-citadel-19343-1561f1cd2280.herokuapp.com/cars
+
+**Get popular cars:**  
+$curl https://shrouded-citadel-19343-1561f1cd2280.herokuapp.com/popular
+
 
 # 4. Models
 The car class represents an auto in the database, it has fields in it such as:
@@ -72,3 +95,5 @@ Response: JSON array of cars with details.
 **GET /popular**  
 Description: Retrieve a list of cars sorted by popularity (number of votes) and alphabetically by make and model if necessary.  
 Response: JSON array of popular cars with details.
+
+

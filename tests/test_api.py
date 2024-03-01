@@ -3,7 +3,7 @@ from ./../src/app import app, db
 from ./../src/car import Car
 
 # Global variables
-BASE_URL = 'http://127.0.0.1:8000'
+BASE_URL = 'https://shrouded-citadel-19343-1561f1cd2280.herokuapp.com'
 CAR_URL = f'{BASE_URL}/cars'
 RATE_URL = f'{BASE_URL}/rate'
 POPULAR_URL = f'{BASE_URL}/popular'
