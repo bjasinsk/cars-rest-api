@@ -4,6 +4,11 @@ Repository intended for the project which is a simple REST API - a basic databas
 
 Project requires python version 3.10. Project runs locally on port 8000.
 
+# The reason why there are two branches
+The use of relative imports (such as from .car import db, Car) is recommended in cases where you are running the application in an environment that supports such a directory structure, Heroku being such an environment. However, when you run the application locally on your computer Python may not be able to resolve relative paths correctly, resulting in import errors. 
+For this reason, I put the version of the project with relative paths on the main branch from which the version on Heroku is hosted.
+On the other hand, I put the version with direct imports on the test-locally branch, so that I can run tests on it and test the application locally.
+
 # 1. Launching the project
 
 **Creation of an environment:**
@@ -32,10 +37,6 @@ To run the tests, go to the tests subfolder in the terminal and then run the com
 
 $pytest
 
-# The reason why there are two branches
-The use of relative imports (such as from .car import db, Car) is recommended in cases where you are running the application in an environment that supports such a directory structure, Heroku being such an environment. However, when you run the application locally on your computer Python may not be able to resolve relative paths correctly, resulting in import errors. 
-For this reason, I put the version of the project with relative paths on the main branch from which the version on Heroku is hosted.
-On the other hand, I put the version with direct imports on the test-locally branch, so that I can run tests on it and test the application locally.
 
 # 3. How to test rest api operations locally (version on test-locally branch)
 
