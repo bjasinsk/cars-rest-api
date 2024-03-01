@@ -58,10 +58,10 @@ $curl -X GET http://127.0.0.1:8000/popular
 Below are only examples of endpoints, adding and rating automobiles works for any car, just replace the data in the command:  
 
 **Add a new car:**  
-curl -X POST -H "Content-Type: application/json" -d "{\"make\":\"Toyota\", \"model\":\"Yaris\"}" https://shrouded-citadel-19343-1561f1cd2280.herokuapp.com/cars
+$curl -X POST -H "Content-Type: application/json" -d "{\"make\":\"Toyota\", \"model\":\"Yaris\"}" https://shrouded-citadel-19343-1561f1cd2280.herokuapp.com/cars
 
 **Rate a car:**  
-curl -X POST -H "Content-Type: application/json" -d "{\"make\":\"Toyota\", \"model\":\"Corolla\", \"rating\":5}" https://shrouded-citadel-19343-1561f1cd2280.herokuapp.com/rate
+$curl -X POST -H "Content-Type: application/json" -d "{\"make\":\"Toyota\", \"model\":\"Corolla\", \"rating\":5}" https://shrouded-citadel-19343-1561f1cd2280.herokuapp.com/rate
 
 **Get all cars:**  
 $curl https://shrouded-citadel-19343-1561f1cd2280.herokuapp.com/cars
