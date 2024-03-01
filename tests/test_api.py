@@ -1,6 +1,6 @@
 import requests
-from app import app, db
-from car import Car
+from ./../src/app import app, db
+from ./../src/car import Car
 
 # Global variables
 BASE_URL = 'http://127.0.0.1:8000'
