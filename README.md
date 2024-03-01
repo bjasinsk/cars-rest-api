@@ -37,7 +37,7 @@ The use of relative imports (such as from .car import db, Car) is recommended in
 For this reason, I put the version of the project with relative paths on the main branch from which the version on Heroku is hosted.
 On the other hand, I put the version with direct imports on the test-locally branch, so that I can run tests on it and test the application locally.
 
-# 3. How to test rest api operations locally
+# 3. How to test rest api operations locally (version on test-locally branch)
 
 Below are only examples of endpoints, adding and rating automobiles works for any car, just replace the data in the command:  
 
