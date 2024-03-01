@@ -1,9 +1,9 @@
 import requests
-from ./../src/app import app, db
-from ./../src/car import Car
+from src.car import Car
+from src.app import app, db
 
 # Global variables
-BASE_URL = 'https://shrouded-citadel-19343-1561f1cd2280.herokuapp.com'
+BASE_URL = 'http://127.0.0.1:8000'
 CAR_URL = f'{BASE_URL}/cars'
 RATE_URL = f'{BASE_URL}/rate'
 POPULAR_URL = f'{BASE_URL}/popular'
