@@ -12,63 +12,71 @@ On the other hand, I put the version with direct imports on the test-locally bra
 # 1. Launching the project
 
 **Creation of an environment:**
-
+```bash
 $python -m venv venv
-
+```
 **Running the environment on a Unix-type system:**
-
+```bash
 $source venv/bin/activate
-
+```
 **Running the environment on Windows:**
-
+```bash
 $venv\Scripts\activate
-
+```
 **Installing the required libraries:**
-
+```bash
 $pip install -r requirements.txt
-
+```
 **To start the project using gunicorn run command in main folder**
-
+```bash
 $gunicorn --chdir src app:app
-
+```
 # 2. Run tests locally
 
 To run the tests, go to the tests subfolder in the terminal and then run the command:  
-
+```bash
 $pytest
-
+```
 
 # 3. How to test rest api operations locally (version on test-locally branch)
 
 Below are only examples of endpoints, adding and rating automobiles works for any car, just replace the data in the command:  
 
 **Add a new car:**    
+```bash
 $curl -X POST -H "Content-Type: application/json" -d '{"make": "Toyota", "model": "Corolla"}' http://127.0.0.1:8000/cars
-
-**Rate a car:**   
+```
+**Rate a car:**  
+```bash
 $curl -X POST -H "Content-Type: application/json" -d '{"make": "Toyota", "model": "Corolla", "rating": 5}' http://127.0.0.1:8000/rate
-
-**Get all cars:**   
+```
+**Get all cars:** 
+```bash
 $curl -X GET http://127.0.0.1:8000/cars
-
+```
 **Get popular cars:**  
+```bash
 $curl -X GET http://127.0.0.1:8000/popular
-
+```
 # 4. How to test rest api operations on Heroku
 Below are only examples of endpoints, adding and rating automobiles works for any car, just replace the data in the command:  
 
 **Add a new car:**  
+```bash
 $curl -X POST -H "Content-Type: application/json" -d "{\"make\":\"Toyota\", \"model\":\"Yaris\"}" https://shrouded-citadel-19343-1561f1cd2280.herokuapp.com/cars
-
+```
 **Rate a car:**  
+```bash
 $curl -X POST -H "Content-Type: application/json" -d "{\"make\":\"Toyota\", \"model\":\"Corolla\", \"rating\":5}" https://shrouded-citadel-19343-1561f1cd2280.herokuapp.com/rate
-
-**Get all cars:**  
+```
+**Get all cars:**
+```bash
 $curl https://shrouded-citadel-19343-1561f1cd2280.herokuapp.com/cars
-
+```
 **Get popular cars:**  
+```bash
 $curl https://shrouded-citadel-19343-1561f1cd2280.herokuapp.com/popular
-
+```
 
 # 4. Models
 The car class represents an auto in the database, it has fields in it such as:
